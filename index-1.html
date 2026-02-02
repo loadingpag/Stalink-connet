@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starlink Data - High-Speed Satellite Internet</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            margin-bottom: 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #60a5fa;
+        }
+        
+        .logo img {
+            width: 50px;
+            height: 50px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.3), rgba(15, 23, 42, 0.7));
+            border-radius: 20px;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            color: #cbd5e1;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+        
+        .trial-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+        
+        /* Plans Grid */
+        .plans-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: #f8fafc;
+        }
+        
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+        
+        /* Plan Card */
+        .plan-card {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .plan-card:hover {
+            transform: translateY(-10px);
+            border-color: #3b82f6;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .plan-card.free-trial {
+            border-color: #10b981;
+        }
+        
+        .plan-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #3b82f6;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .plan-badge.free {
+            background: #10b981;
+        }
+        
+        .plan-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+        
+        .plan-name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #f8fafc;
+        }
+        
+        .plan-price {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .plan-duration {
+            color: #94a3b8;
+            margin-bottom: 20px;
+        }
+        
+        .plan-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+        
+        .plan-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+            color: #cbd5e1;
+        }
+        
+        .plan-features li:before {
+            content: "✓";
+            color: #10b981;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .select-plan-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .select-plan-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+        }
+        
+        .select-plan-btn.free {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .features h2 {
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: #f8fafc;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: rgba(30, 41, 59, 0.6);
+            padding: 30px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(30, 41, 59, 0.9);
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #f8fafc;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #94a3b8;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .plans-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <div>🚀</div>
+                <div>Starlink Data</div>
+            </div>
+            <div style="color: #94a3b8; font-size: 14px;">Powered by Satellite Technology</div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>High-Speed Satellite Internet</h1>
+            <p>Get blazing fast internet anywhere with Starlink's satellite technology. Perfect for remote areas, travelers, and digital nomads.</p>
+            <div class="trial-badge">
+                🎁 Free 5GB for 4 Days Trial!
+            </div>
+        </section>
+
+        <!-- Plans Section -->
+        <section class="plans">
+            <h2 class="plans-title">Choose Your Data Plan</h2>
+            <div class="plans-grid">
+                <!-- Free Trial Plan -->
+                <div class="plan-card free-trial">
+                    <div class="plan-badge free">FREE TRIAL</div>
+                    <div class="plan-icon">🎁</div>
+                    <h3 class="plan-name">5GB Trial</h3>
+                    <div class="plan-price">$0</div>
+                    <div class="plan-duration">4 Days Access</div>
+                    <ul class="plan-features">
+                        <li>5GB High-speed data</li>
+                        <li>4 days validity</li>
+                        <li>24/7 support</li>
+                        <li>No credit card required</li>
+                        <li>Test our service risk-free</li>
+                    </ul>
+                    <button class="select-plan-btn free" onclick="selectPlan('trial')">Start Free Trial</button>
+                </div>
+
+                <!-- Basic Plan -->
+                <div class="plan-card">
+                    <div class="plan-badge">POPULAR</div>
+                    <div class="plan-icon">📶</div>
+                    <h3 class="plan-name">25GB Plan</h3>
+                    <div class="plan-price">$19.99</div>
+                    <div class="plan-duration">30 Days Access</div>
+                    <ul class="plan-features">
+                        <li>25GB High-speed data</li>
+                        <li>30 days validity</li>
+                        <li>Up to 150 Mbps speed</li>
+                        <li>Unlimited streaming</li>
+                        <li>Priority support</li>
+                    </ul>
+                    <button class="select-plan-btn" onclick="selectPlan('basic')">Get This Plan</button>
+                </div>
+
+                <!-- Pro Plan -->
+                <div class="plan-card">
+                    <div class="plan-badge">BEST VALUE</div>
+                    <div class="plan-icon">🚀</div>
+                    <h3 class="plan-name">100GB Plan</h3>
+                    <div class="plan-price">$49.99</div>
+                    <div class="plan-duration">30 Days Access</div>
+                    <ul class="plan-features">
+                        <li>100GB High-speed data</li>
+                        <li>30 days validity</li>
+                        <li>Up to 300 Mbps speed</li>
+                        <li>4K streaming included</li>
+                        <li>VIP support</li>
+                    </ul>
+                    <button class="select-plan-btn" onclick="selectPlan('pro')">Get This Plan</button>
+                </div>
+
+                <!-- Unlimited Plan -->
+                <div class="plan-card">
+                    <div class="plan-badge">UNLIMITED</div>
+                    <div class="plan-icon">🌐</div>
+                    <h3 class="plan-name">Unlimited Plan</h3>
+                    <div class="plan-price">$99.99</div>
+                    <div class="plan-duration">30 Days Access</div>
+                    <ul class="plan-features">
+                        <li>Unlimited data</li>
+                        <li>30 days validity</li>
+                        <li>Up to 500 Mbps speed</li>
+                        <li>8K streaming capability</li>
+                        <li>24/7 dedicated support</li>
+                    </ul>
+                    <button class="select-plan-btn" onclick="selectPlan('unlimited')">Get This Plan</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <h2>Why Choose Starlink Data?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Lightning Fast</h3>
+                    <p>Get up to 500 Mbps download speeds anywhere</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Global Coverage</h3>
+                    <p>Works anywhere with clear view of the sky</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure Connection</h3>
+                    <p>Military-grade encryption for your privacy</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎮</div>
+                    <h3>Gaming Ready</h3>
+                    <p>Low latency perfect for online gaming</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>© 2024 Starlink Data. All rights reserved.</p>
+            <p>Powered by Starlink Satellite Technology</p>
+        </footer>
+    </div>
+
+    <script>
+        // Plan data
+        const plans = {
+            trial: {
+                name: "5GB Free Trial",
+                price: "$0",
+                duration: "4 Days",
+                icon: "🎁",
+                description: "Perfect for testing our high-speed satellite internet",
+                features: ["5GB High-speed data", "4 days access", "No credit card required", "24/7 support"],
+                isFree: true
+            },
+            basic: {
+                name: "25GB Plan",
+                price: "$19.99",
+                duration: "30 Days",
+                icon: "📶",
+                description: "Great for regular browsing and streaming",
+                features: ["25GB High-speed data", "Up to 150 Mbps", "Unlimited streaming", "30 days access"],
+                isFree: false
+            },
+            pro: {
+                name: "100GB Plan",
+                price: "$49.99",
+                duration: "30 Days",
+                icon: "🚀",
+                description: "Perfect for heavy users and families",
+                features: ["100GB High-speed data", "Up to 300 Mbps", "4K streaming", "30 days access"],
+                isFree: false
+            },
+            unlimited: {
+                name: "Unlimited Plan",
+                price: "$99.99",
+                duration: "30 Days",
+                icon: "🌐",
+                description: "Unlimited data for ultimate freedom",
+                features: ["Unlimited data", "Up to 500 Mbps", "8K streaming", "Priority support"],
+                isFree: false
+            }
+        };
+        
+        function selectPlan(planId) {
+            const plan = plans[planId];
+            
+            // Save selected plan to localStorage
+            localStorage.setItem('selectedPlan', JSON.stringify(plan));
+            
+            // Redirect to Ecocash-style login
+            window.location.href = 'starlink-login.html';
+        }
+    </script>
+</body>
+</html>
